@@ -1,3 +1,5 @@
+import React from "react"
+
 function Base({ counter, buttonIncrease, buttonDecrease, resetCounter }){
     const classePosNeg = counter < 0 ? 'red-text' : 'white-text'
 

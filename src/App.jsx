@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Base from './components/BaseText.jsx'
+import Background from './components/Background.jsx'
 
 function App() {
   const [counter, setCount] = useState(0)
@@ -18,11 +19,16 @@ function App() {
   }
 
   return (
-    <Fundo>
-      <Base counter={counter} buttonIncrease={buttonIncrease} buttonDecrease={buttonDecrease} 
-     resetCounter={resetCounter}></Base>
-    </Fundo>
-  )
+    <div>
+      <Background />
+      <Base
+        counter={counter}
+        buttonIncrease={buttonIncrease}
+        buttonDecrease={buttonDecrease}
+        resetCounter={resetCounter}
+      />
+    </div>
+  );
 }
 
 export default App
