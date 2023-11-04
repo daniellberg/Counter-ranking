@@ -51,7 +51,7 @@ button {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-  transition: outline 0s; /* Adicione essa linha para remover o foco imediatamente */
+  transition: outline 0s; 
 }
 
 button:hover {
@@ -66,6 +66,17 @@ button:focus-visible {
 .button{
   margin: 3%;
 }
+
+.red-text {
+  color: red;
+  transition: all ease-in 0.2s;
+}
+
+.white-text {
+  color: white;
+  transition: all ease-in 0.2s;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

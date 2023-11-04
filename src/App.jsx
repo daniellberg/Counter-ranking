@@ -6,19 +6,22 @@ function App() {
   const [counter, setCount] = useState(0)
 
   function buttonIncrease (){
-    setCount(function(atual){
-      return ++atual
-    })
+    setCount(counter+1)
   }
 
   function buttonDecrease (){
-    setCount(function(atual){
-      return --atual
-    })
+    setCount(counter-1)
+  }
+
+  function resetCounter (){
+    setCount(0)
   }
 
   return (
-     <Base counter={counter} buttonIncrease={buttonIncrease} buttonDecrease={buttonDecrease}></Base>
+    <Fundo>
+      <Base counter={counter} buttonIncrease={buttonIncrease} buttonDecrease={buttonDecrease} 
+     resetCounter={resetCounter}></Base>
+    </Fundo>
   )
 }
 
