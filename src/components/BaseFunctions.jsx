@@ -1,84 +1,88 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import Slider from '@mui/material/Slider';
 
-//function counter
 function Main() {
 
-    const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
+  const [sliderValue, setSliderValue] = useState(15);
+  const [segundos, setSegundos] = useState(sliderValue);
+  const [isActive, setIsActive] = useState(false);
 
-    function buttonIncrease() {
-        setCounter(counter + 1);
+  const classePosNeg = counter < 0 ? 'red-text' : 'white-text';
+
+  const buttonIncrease = () => {
+    setCounter(counter + 1);
+  };
+
+  const buttonDecrease = () => {
+    setCounter(counter - 1);
+  };
+
+  const resetCounter = () => {
+    setCounter(0);
+  };
+
+  const startTimer = () => {
+    setSegundos(sliderValue);
+    setIsActive(true);
+  };
+
+  const stopTimer = () => {
+    setIsActive(false);
+  };
+
+  const resetTimer = () => {
+    setIsActive(false);
+    setSegundos(sliderValue);
+  };
+
+  useEffect(() => {
+    let interval;
+
+    if (isActive && segundos > 0) {
+      interval = setInterval(() => {
+        setSegundos((prevSegundos) => prevSegundos - 1);
+      }, 1000);
+    } else if (segundos === 0) {
+      setIsActive(false);
     }
 
-    function buttonDecrease() {
-        setCounter(counter - 1);
-    }
+    return () => clearInterval(interval);
+  }, [isActive, segundos]);
 
-    function resetCounter() {
-        setCounter(0);
-    }
-
-    const classePosNeg = counter < 0 ? 'red-text' : 'white-text';
-
-    //function Timer
-    const [segundos, setSegundos] = useState(10);
-    const [isActive, setIsActive] = useState(false);
-
-    function startTimer() {
-        setIsActive(true);
-    }
-
-    function stopTimer() {
-        setIsActive(false);
-    }
-
-    function resetTimer() {
-        setIsActive(false);
-        setSegundos(0);
-    }
-
-    useEffect(() => {
-        let interval;
-
-        if (isActive) {
-            interval = setInterval(() => {
-                setSegundos((prevSegundos) => prevSegundos + 1);
-            }, 1000);
-        } else {
-            clearInterval(interval);
-        }
-
-        return () => clearInterval(interval);
-    }, [isActive]);
-
-    return (
-        <div>
-            <h1>
-                You clicked the button{' '}
-                <span id="counter" className={classePosNeg}>
-                    {counter}
-                </span>{' '}
-                times
-            </h1>
-            <div className='buttonCounter'>
-                <button onClick={buttonIncrease} className="button">Increase</button>
-                <button onClick={buttonDecrease} className="button">Decrease</button>
-                <button onClick={resetCounter} className="button">Start Again</button>
-            </div>
-            <div className='select'>
-                <h2>Choose a challenge</h2>
-                    <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
-            </div>
-            <div className='buttonTimer'>
-                <h1>{segundos} seconds have passed</h1>
-                <button onClick={startTimer} className="button">Start</button>
-                <button onClick={stopTimer} className="button">Stop</button>
-                <button onClick={resetTimer} className="button">Reset</button>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <h1>
+        You clicked the button{' '}
+        <span id="counter" className={classePosNeg}>
+          {counter}
+        </span>{' '}
+        times
+      </h1>
+      <div className='buttonCounter'>
+        <button onClick={buttonIncrease} className="button">Increase</button>
+        <button onClick={buttonDecrease} className="button">Decrease</button>
+        <button onClick={resetCounter} className="button">Start Again</button>
+      </div>
+      <div className='select'>
+        <h2>Choose a challenge</h2>
+        <Slider
+          value={sliderValue}
+          onChange={(event, newValue) => setSliderValue(newValue)}
+          aria-label="Default"
+          valueLabelDisplay="auto"
+          max="30"
+          min="1"
+        />
+      </div>
+      <div className='buttonTimer'>
+        <h1>{segundos} seconds left</h1>
+        <button onClick={startTimer} className="button">Start</button>
+        <button onClick={stopTimer} className="button">Stop</button>
+        <button onClick={resetTimer} className="button">Reset</button>
+      </div>
+    </div>
+  );
 }
 
 export default Main;
