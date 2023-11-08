@@ -48,7 +48,6 @@ function Main() {
       setSliderValue(segundos);
     } else if (segundos === 0) {
       setIsActive(false);
-      // setSegundos(sliderValue);
     }
 
     return () => clearInterval(interval);
