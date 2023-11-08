@@ -77,7 +77,12 @@ button:focus-visible {
   transition: all ease-in 0.2s;
 }
 
-
+.appbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
 
 
 @media (prefers-color-scheme: light) {

@@ -4,7 +4,7 @@ import Slider from '@mui/material/Slider';
 function Main() {
 
   const [counter, setCounter] = useState(0);
-  const [sliderValue, setSliderValue] = useState(15);
+  const [sliderValue, setSliderValue] = useState(10);
   const [segundos, setSegundos] = useState(sliderValue);
   const [isActive, setIsActive] = useState(false);
 
@@ -43,8 +43,12 @@ function Main() {
       interval = setInterval(() => {
         setSegundos((prevSegundos) => prevSegundos - 1);
       }, 1000);
+
+      //slider moves with time
+      setSliderValue(segundos);
     } else if (segundos === 0) {
       setIsActive(false);
+      // setSegundos(sliderValue);
     }
 
     return () => clearInterval(interval);
@@ -71,7 +75,7 @@ function Main() {
           onChange={(event, newValue) => setSliderValue(newValue)}
           aria-label="Default"
           valueLabelDisplay="auto"
-          min={1}
+          min={0}
           max={20}
         />
       </div>
