@@ -71,8 +71,8 @@ function Main() {
           onChange={(event, newValue) => setSliderValue(newValue)}
           aria-label="Default"
           valueLabelDisplay="auto"
-          max="30"
-          min="1"
+          min={1}
+          max={20}
         />
       </div>
       <div className='buttonTimer'>
