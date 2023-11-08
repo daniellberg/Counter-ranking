@@ -3,7 +3,7 @@ import React from 'react';
 function Background() {
   const backgroundStyle = {
     width: '55%', // Defina a largura desejada (por exemplo, 80%)
-    height: '75vh', // Defina a altura desejada (por exemplo, 60vh)
+    height: '80vh', // Defina a altura desejada (por exemplo, 60vh)
     backgroundColor: '#34D1BF', // Defina a cor desejada
     position: 'fixed',
     top: '50%', // Centralize verticalmente
